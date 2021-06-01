@@ -13,9 +13,11 @@ import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 import com.tienthanh.config.SecurityConfig;
 import com.tienthanh.domain.Account;
 import com.tienthanh.domain.employee.Employee;
+import com.tienthanh.domain.product.Product;
 import com.tienthanh.domain.security.AccountRole;
 import com.tienthanh.domain.security.Role;
 import com.tienthanh.service.EmployeeService;
+import com.tienthanh.service.ProductService;
 import com.tienthanh.service.impl.FormatDateImpl;
 
 @SpringBootApplication
@@ -23,6 +25,9 @@ public class EcommerceAdminApplication implements CommandLineRunner{
 	@Autowired
 	private EmployeeService employeeService;
 	
+	@Autowired
+	private ProductService productService;
+
 	@Autowired
 	private FormatDateImpl formateDate;
 
@@ -49,6 +54,7 @@ public class EcommerceAdminApplication implements CommandLineRunner{
 		
 		employeeService.createEmployee(employee, accountRoles);
 		
+
 	}
 
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:replace="header :: common-header" />
+<body>
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
+		data-sidebartype="full" data-sidebar-position="absolute"
+		data-header-position="absolute" data-boxed-layout="full">
+		<div th:replace="header :: common-body" />
+		<div class="page-wrapper">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+					<div class="white-box">
+						<h3 style="text-align: center;">DS Khuyến mại</h3>
+						<a th:href="@{addNewSaleOff}"><button type="button"
+								class="btn btn-success">Thêm khuyến mại</button> </a>
+
+							<div class="col-md-3 col-sm-3 col-xs-6 ms-auto">
+								<input type="text" placeholder="Tìm kiếm khuyến mại"
+									class="form-control mt-0" id="saleOffInput"
+									onkeyup="filterSearchSaleOff()">
+							</div>
+							<table class="table">
+								<tr>
+									<th>Id</th>
+									<th>Tên khuyến mại</th>
+									<th>Mô tả</th>
+									<th>Ngày bắt đầu</th>
+									<th>Ngày kết thúc</th>
+									<th>Action</th>
+								</tr>
+								<tr th:each="saleOff : ${saleOffList}">
+									<td th:text="${saleOff.id}"></td>
+									<td th:text="${saleOff.name}"></td>
+									<td th:text="${saleOff.description}"></td>
+									<td th:text="${saleOff.startDate}"></td>
+									<td th:text="${saleOff.endDate}"></td>
+									<td><a th:href="@{/updateSaleOff(id=${saleOff.id})}">
+											<img alt="" src="/image/icon/modify.png" width="20px">
+									</a> <a th:href="@{/deleteSaleOff(id=${saleOff.id})}"> <img
+											alt="" src="/image/icon/delete.png" width="20px">
+									</a>
+								</tr>
+							</table>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="header :: common-footer" />
+	<div th:replace="header :: common-scripts" />
+</body>
+</html>

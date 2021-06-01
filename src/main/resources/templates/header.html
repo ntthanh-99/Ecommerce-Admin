@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:fragment="common-header">
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +80,7 @@
                         <li>
                             <a class="profile-pic" th:href="@{/myProfile}">
                                 <img src="/image/icon/person-home.png" alt="user-img" width="36"
-                                    class="img-circle"><span class="text-white font-medium" th:text="${employee.username}"></span></a>
+                                    class="img-circle"><span class="text-white font-medium" th:text="${employee.account.username}"></span></a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -124,45 +124,45 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/material"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/import"
                                 aria-expanded="false">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Nguyên liệu</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/productionLine"
-                                aria-expanded="false">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Dây truyền</span>
+                                <span class="hide-menu">Nhập hàng</span>
                             </a>
                         </li>
 						<li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/importMaterial"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/addtoWeb"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Nhập kho</span>
+                                <span class="hide-menu">Bày bán</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/exportMaterial"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/saleoff"
                                 aria-expanded="false">
-                                <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Xuất kho</span>
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span class="hide-menu">Khuyến mại</span>
+                            </a>
+                        </li>
+						 <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/oder"
+                                aria-expanded="false">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                <span class="hide-menu">Đơn hàng</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/distribution"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/viewComment"
                                 aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">Phân phối</span>
+                                <span class="hide-menu">Xử lí ý kiến</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/plan"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/stat"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Kế hoạch</span>
+                                <span class="hide-menu">Thống kê</span>
                             </a>
                         </li>
                     </ul>
@@ -174,7 +174,7 @@
         </aside>
 	</div>
 	<div th:fragment="common-footer">
-		<footer class="footer text-center"> 2021 © by nhóm 2.1 Hệ thống quản li sản xuất 
+		<footer class="footer text-center"> 2021 © by nhóm 3 Xây dựng hệ thống thương mại điện tử
          </footer>
 	</div>
 	<div th:fragment="common-scripts">

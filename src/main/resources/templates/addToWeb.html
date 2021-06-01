@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:replace="header :: common-header" />
+<body>
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5"
+		data-sidebartype="full" data-sidebar-position="absolute"
+		data-header-position="absolute" data-boxed-layout="full">
+		<div th:replace="header :: common-body" />
+		<div class="page-wrapper">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+					<div class="white-box">
+						<div class="d-md-flex mb-3">
+							<h3 class="box-title mb-0">Danh sách sản phẩm</h3>
+							<div class="col-md-3 col-sm-4 col-xs-6 ms-auto"
+								style="width: 50%;">
+								<input type="text" placeholder="Tìm kiếm sản phẩm"
+									class="form-control mt-0" id="productInput"
+									onkeyup="filterSearchProduct()">
+							</div>
+						</div>
+						<div class="table-wrapper-scroll-y my-custom-scrollbar">
+							<table class="table table-bordered table-striped mb-0"
+								id="productTable">
+								<thead>
+									<tr>
+										<th class="border-top-0">Id</th>
+										<th class="border-top-0">Tên sản phẩm</th>
+										<th class="border-top-0">Giá</th>
+										<th class="border-top-0">Mô tả</th>
+										<th class="border-top-0">Ngày tạo</th>
+										<th class="border-top-0">Ngày sửa</th>
+										<th class="border-top-0">Chọn</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="product : ${productList}">
+										<td class="txt-oflo" th:text="${product.id}"></td>
+										<td class="txt-oflo" th:text="${product.name}"></td>
+										<td class="txt-oflo" th:text="${product.price}"></td>
+										<td class="txt-oflo" th:text="${product.description}"></td>
+										<td class="txt-oflo" th:text="${product.createDate}"></td>
+										<td class="txt-oflo" th:text="${product.modifyDate}"></td>
+										<td><a th:href="@{/modifyProduct(id=${product.id})}">
+												<img alt="" src="/image/icon/modify.png" width="20px">
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="header :: common-footer" />
+	<div th:replace="header :: common-scripts" />
+	<script>
+		function filterSearchProduct() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("productInput");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("productTable");
+			tr = table.getElementsByTagName("tr");
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[1];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>
