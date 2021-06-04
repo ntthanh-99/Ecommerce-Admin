@@ -47,4 +47,30 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
+
+	@RequestMapping("/myProfile")
+	public String myProfile(Model model, Principal principal) {
+		String username = principal.getName();
+		Employee employee = employeeService.findByAccount(accountRepository.findByUsername(username));
+		model.addAttribute("employee", employee);
+		return "myProfile";
+	}
+
+	@PostMapping("/updateProfile")
+	public String updateProfile(Model model, @ModelAttribute("newPassword") String newPassword,
+			@ModelAttribute("currentPassword") String curentPassword,
+			@ModelAttribute("confirmPassword") String confirmPassword, @ModelAttribute("username") String username) {
+		Employee employee = employeeService.findByAccount(accountRepository.findByUsername(username));
+		// model.addAttribute("employee", employee);
+		if (!employee.getAccount().getPassword().equals(curentPassword)) {
+			model.addAttribute("incorrectPassword", true);
+			return "myProfile";
+		}
+		if (!confirmPassword.equals(newPassword)) {
+			model.addAttribute("equalPassword", true);
+			return "myProfile";
+		}
+		employeeService.changePassword(employee, newPassword);
+		return "myProfile";
+	}
 }

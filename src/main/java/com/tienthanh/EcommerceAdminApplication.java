@@ -47,7 +47,7 @@ public class EcommerceAdminApplication implements CommandLineRunner{
 		
 		Role role = new Role();
 		role.setId(0);
-		role.setName("EMPLOYEE_ADMIN");
+		role.setName("EMPLOYEE-ADMIN");
 		
 		Set<AccountRole> accountRoles = new HashSet<AccountRole>();
 		accountRoles.add(new AccountRole(role, account));

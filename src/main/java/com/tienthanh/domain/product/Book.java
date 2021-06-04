@@ -17,6 +17,7 @@ public class Book extends AbstractClass {
 	private Long id;
 
 	private String author;
+	private String category;
 	private String publishing;
 	private String publishYear;
 

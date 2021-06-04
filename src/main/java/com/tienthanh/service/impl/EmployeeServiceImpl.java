@@ -53,5 +53,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 		// TODO Auto-generated method stub
 		return employeeRepository.findByAccount(account);
 	}
+
+	@Override
+	public void changePassword(Employee employee, String newPassword) {
+		// TODO Auto-generated method stub
+		employee.getAccount().setPassword(SecurityConfig.passwordEncoder().encode(newPassword));
+		employeeRepository.save(employee);
+		return;
+	}
 	
 }

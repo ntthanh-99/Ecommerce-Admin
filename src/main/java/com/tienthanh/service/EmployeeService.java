@@ -11,4 +11,6 @@ public interface EmployeeService {
 	Employee createEmployee(Employee employee, Set<AccountRole> accountRoles);
 
 	Employee findByAccount(Account account);
+
+	void changePassword(Employee employee, String newPassword);
 }
