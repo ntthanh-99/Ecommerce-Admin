@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
 <head th:replace="header :: common-header"/>
 <body>
 	<div class="preloader">
@@ -18,7 +19,7 @@
 					<div class="white-box">
 					<h3 style="margin-left: 50px">Thêm tài khoản</h3>
 						<div class="d-md-flex mb-3">
-							<form th:action="@{addNewAccount}" method="post" th:object="${newEmployee}" style="margin-left: 50px;">
+							<form th:action="@{addNewAccount}" method="post" th:object="${newAccount}" style="margin-left: 50px;">
 								<div class="form-group">
 									<label for="username">Tài khoản</label> <input
 										class="form-control" id="userName" name="username"

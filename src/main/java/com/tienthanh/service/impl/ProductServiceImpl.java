@@ -10,11 +10,16 @@ import org.springframework.stereotype.Service;
 import com.tienthanh.domain.product.Book;
 import com.tienthanh.domain.product.Clothes;
 import com.tienthanh.domain.product.Electronic;
+import com.tienthanh.domain.product.ImportBill;
+import com.tienthanh.domain.product.ImportProduct;
 import com.tienthanh.domain.product.Product;
+import com.tienthanh.domain.product.Supplier;
 import com.tienthanh.repository.BookRepository;
 import com.tienthanh.repository.ClothesRepository;
 import com.tienthanh.repository.ElectronicRepository;
+import com.tienthanh.repository.ImportBillRepository;
 import com.tienthanh.repository.ProductRepository;
+import com.tienthanh.repository.SupplierRepository;
 import com.tienthanh.service.ProductService;
 
 @Service
@@ -30,6 +35,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ElectronicRepository electronicRepository;
+
+	@Autowired
+	private SupplierRepository supplierRepository;
+
+	@Autowired
+	private ImportBillRepository importBillRepository;
 
 	@Override
 	public List<Product> findAllUnactiveProduct() {
@@ -121,6 +132,55 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}
 		return unactiveProducts;
+	}
+
+	@Override
+	public List<Product> findAll() {
+		// TODO Auto-generated method stub
+		return (List<Product>) productRepository.findAll();
+	}
+
+	@Override
+	public void deleteProductById(Long id) {
+		// TODO Auto-generated method stub
+		productRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Supplier> findAllSupplier() {
+		// TODO Auto-generated method stub
+		return (List<Supplier>) supplierRepository.findAll();
+	}
+
+	@Override
+	public Supplier findSupplierById(Long id) {
+		// TODO Auto-generated method stub
+		return supplierRepository.findById(id).get();
+	}
+
+	@Override
+	public ImportBill saveBill(ImportBill importBill) {
+		// TODO Auto-generated method stub
+		List<ImportProduct> importProducts = importBill.getImportProductList();
+		for (ImportProduct importProduct : importProducts) {
+			Product product = findById(importProduct.getProduct().getId());
+			product.setQuanlity(product.getQuanlity() + importProduct.getQuanlity());
+			productRepository.save(product);
+			importProduct.setImportBill(importBill);
+		}
+		return importBillRepository.save(importBill);
+	}
+
+	@Override
+	public List<ImportBill> findAllImportBill() {
+		// TODO Auto-generated method stub
+		return (List<ImportBill>) importBillRepository.findAll();
+	}
+
+	@Override
+	public ImportBill findImportBillById(Long id) {
+		// TODO Auto-generated method stub
+		return importBillRepository.findById(id).get();
 	}
 
 }

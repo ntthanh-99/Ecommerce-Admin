@@ -17,33 +17,33 @@
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
 					<div class="white-box">
-					<h3 style="text-align: center">DS tài khoản</h3>
-					<a th:href="@{addNewAccount}"><button type="button" class="btn btn-success">Thêm tài khoản</button> </a>
+					<h3 style="text-align: center">DS Sản phẩm</h3>
+					<a th:href="@{addNewProduct}"><button type="button" class="btn btn-success">Thêm Sản Phẩm</button> </a>
 						<div class="d-md-flex mb-3">
 							<table class="table">
 								<tr>
 									<th>Id</th>
-									<th>Tài khoản</th>
-									<th>Mật khẩu</th>
-									<th>Chức vụ</th>
+									<th>Tên Sản Phẩm</th>
+									<th>Mô tả</th>
+									<th>Giá</th>
 									<th>Trạng thái</th>
 									<th>Ngày tạo</th>
 									<th>Ngày sửa</th>
 									<th>Action</th>
 								</tr>
-								<tr th:each="account : ${accountList}">
-									<td th:text="${account.id}"></td>
-									<td th:text="${account.username}"></td>
-									<td>*****</td>
-									<td th:text="${account.position}"></td>
-									<td th:text="${account.enabled}"></td>
-									<td th:text="${account.createDate}"></td>
-									<td th:text="${account.modifyDate}"></td>
+								<tr th:each="product : ${productList}">
+									<td th:text="${product.id}"></td>
+									<td th:text="${product.name}"></td>
+									<td th:text="${product.description}"></td>
+									<td th:text="${product.price}"></td>
+									<td th:text="${product.active}"></td>
+									<td th:text="${product.createDate}"></td>
+									<td th:text="${product.modifyDate}"></td>
 									<td>
-										<a th:href="@{/updateAccount(id=${account.id})}">
+										<a th:href="@{/updateProduct(id=${product.id})}">
 											<img alt="" src="/image/icon/modify.png" width="20px"> 
 										</a> 
-										<a th:href="@{/deleteAccount(id=${account.id})}">
+										<a th:href="@{/deleteProduct(id=${product.id})}">
 											<img alt="" src="/image/icon/delete.png" width="20px"> 
 										</a>
 								</tr>

@@ -20,11 +20,11 @@ import com.tienthanh.domain.security.AccountRole;
 import com.tienthanh.domain.security.Authority;
 
 @Entity
-public class Account implements UserDetails {
+public class Account extends AbstractClass implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	private String email;
 	private String username;
 	private String password;
 	private String position;
@@ -98,7 +98,7 @@ public class Account implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return true;
+		return enabled;
 	}
 
 	public Set<AccountRole> getAccountRoles() {
@@ -111,6 +111,14 @@ public class Account implements UserDetails {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

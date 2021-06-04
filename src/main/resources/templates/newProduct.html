@@ -17,27 +17,23 @@
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
 					<div class="white-box">
-					<h3 style="margin-left: 50px">Cập nhật tài khoản</h3>
+					<h3 style="margin-left: 50px">Thêm sản phẩm</h3>
 						<div class="d-md-flex mb-3">
-							<form th:action="@{/updateAccount}" method="post" th:object="${updateAccount}" style="margin-left: 50px;">
-								<input type="hidden" id="id" name="id" th:field="*{id}" />
+							<form th:action="@{addNewProduct}" method="post" th:object="${newProduct}" style="margin-left: 50px;">
 								<div class="form-group">
-									<label for="username">Tài khoản</label> <input
-										class="form-control" id="userName" name="username"
-										th:field="*{username}" />
+									<label for="name">Tên sản phẩm</label> <input
+										class="form-control" name="name"
+										th:field="*{name}" />
 								</div>
 								<div class="form-group">
-									<label for="password">Mật khẩu</label><input
-										type="password" class="form-control" id="password"
-										name="password" placeholder="*****" th:field="*{password}"/>
+									<label for="description">Mô tả</label><input
+										type="text" class="form-control"
+										th:field="*{description}" />
 								</div>
 								<div class="form-group">
-									<label for="position">Chức vụ</label>
-      								<select class="form-control" id="position" name="position" th:field="*{position}">
-        								<option th:value="'admin'" th:text="Admin"></option>
-        								<option th:value="'warehouse'" th:text="Warehouse"></option>
-        								<option th:value="'seller'" th:text="Seller"></option>
-      								</select>
+									<label for="description">Giá</label><input
+										type="text" class="form-control"
+										th:field="*{price}" />
 								</div>
 								<button id="updateUserInfoButton" type="submit"
 									class="btn btn-primary" style="margin: auto">Lưu</button>

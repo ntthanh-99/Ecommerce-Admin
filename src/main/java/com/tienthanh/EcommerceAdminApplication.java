@@ -16,6 +16,7 @@ import com.tienthanh.domain.employee.Employee;
 import com.tienthanh.domain.product.Product;
 import com.tienthanh.domain.security.AccountRole;
 import com.tienthanh.domain.security.Role;
+import com.tienthanh.repository.RoleRepository;
 import com.tienthanh.service.EmployeeService;
 import com.tienthanh.service.ProductService;
 import com.tienthanh.service.impl.FormatDateImpl;
@@ -31,6 +32,9 @@ public class EcommerceAdminApplication implements CommandLineRunner{
 	@Autowired
 	private FormatDateImpl formateDate;
 
+	@Autowired
+	private RoleRepository roleRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(EcommerceAdminApplication.class, args);
 	}
@@ -42,13 +46,17 @@ public class EcommerceAdminApplication implements CommandLineRunner{
 		account.setUsername("admin");
 		account.setPassword(SecurityConfig.passwordEncoder().encode("admin"));
 		account.setPosition("admin");
+		account.setEnabled(true);
 		employee.setAccount(account);
 		employee.setCreateDate(formateDate.convertLocalDateTimeToDate(LocalDateTime.now()));
 		
-		Role role = new Role();
-		role.setId(0);
-		role.setName("EMPLOYEE-ADMIN");
 		
+		Role role = roleRepository.findByName("EMPLOYEE_ADMIN");
+		if (role == null) {
+			role = new Role();
+			role.setName("EMPLOYEE_ADMIN");
+		}
+
 		Set<AccountRole> accountRoles = new HashSet<AccountRole>();
 		accountRoles.add(new AccountRole(role, account));
 		
