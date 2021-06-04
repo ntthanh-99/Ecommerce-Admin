@@ -7,6 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.tienthanh.domain.oder.SaleOffForProduct;
+import com.tienthanh.domain.oder.SaleOffForTotal;
+import com.tienthanh.domain.product.Book;
+import com.tienthanh.domain.product.Clothes;
+import com.tienthanh.domain.product.Electronic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +59,12 @@ public class ProductController {
 		String username = principal.getName();
 		Employee employee = employeeService.findByAccount(accountRepository.findByUsername(username));
 		model.addAttribute("employee", employee);
-		model.addAttribute("newProduct", new Product());
+
+		model.addAttribute("book", new Book());
+		model.addAttribute("electronic", new Electronic());
+		model.addAttribute("clothes", new Clothes());
+		model.addAttribute("classSaleOffForTotal", true);
+		model.addAttribute("productList", productService.findAllActiveProduct());
 		return "newProduct";
 	}
 
