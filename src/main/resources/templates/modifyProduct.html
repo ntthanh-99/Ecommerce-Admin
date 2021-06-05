@@ -21,8 +21,8 @@
 					<div class="white-box" th:if="${bookInfo}" )>
 						<form class="form-horizontal" th:action="@{/modifyProduct}"
 							method="post" enctype="multipart/form-data">
-							<input type="hidden" th:value="${book.id}">
-							<input type="hidden" th:value="${book.product.id}">
+							<input type="hidden" th:field="${book.id}">
+							<input type="hidden" th:field="${book.product.id}">
 							<div class="form-group">
 								<label class="col-md-2 control-label" for="tile">* Tiêu
 									đề</label>

@@ -96,7 +96,7 @@ public class DeloyProductController {
 			MultipartFile bookImage = updateBook.getProduct().getProductImage();
 			try {
 				byte[] bytes = bookImage.getBytes();
-				String name = updateBook.getId() + ".png";
+				String name = updateBook.getProduct().getId() + ".png";
 				File file = new File("src/main/resources/static/image/book/" + name);
 				file.delete();
 				BufferedOutputStream stream = new BufferedOutputStream(

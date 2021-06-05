@@ -68,12 +68,30 @@ public class ProductController {
 		return "newProduct";
 	}
 
-	@PostMapping("/addNewProduct")
-	public String addNewAccountPost(@ModelAttribute("newProduct") Product product) {
+	@PostMapping("/newBook")
+	public String addNewBook(@ModelAttribute("book") Book book) {
 		LocalDateTime createDateNow = LocalDateTime.now();
 		Date createDate = formatDate.convertLocalDateTimeToDate(createDateNow);
-		product.setCreateDate(createDate);
-		productService.saveProduct(product);
+		book.setCreateDate(createDate);
+		productService.saveBook(book);
+		return "redirect:/product";
+	}
+
+	@PostMapping("/newElectronic")
+	public String addNewElectronic(@ModelAttribute("electronic") Electronic electronic) {
+		LocalDateTime createDateNow = LocalDateTime.now();
+		Date createDate = formatDate.convertLocalDateTimeToDate(createDateNow);
+		electronic.setCreateDate(createDate);
+		productService.saveElectronic(electronic);
+		return "redirect:/product";
+	}
+
+	@PostMapping("/newClothes")
+	public String addNewClothes(@ModelAttribute("clothes") Clothes clothes) {
+		LocalDateTime createDateNow = LocalDateTime.now();
+		Date createDate = formatDate.convertLocalDateTimeToDate(createDateNow);
+		clothes.setCreateDate(createDate);
+		productService.saveClothes(clothes);
 		return "redirect:/product";
 	}
 
