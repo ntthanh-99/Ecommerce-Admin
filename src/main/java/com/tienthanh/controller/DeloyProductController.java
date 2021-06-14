@@ -89,7 +89,9 @@ public class DeloyProductController {
 	public String modifyProduct(@ModelAttribute("clothes") Clothes updateClothes,
 			@ModelAttribute("book") Book updateBook, @ModelAttribute("electronic") Electronic updateElectronic) {
 		if (typeProduct.equals("book")) {
+			Book book = productService.findBookById(updateBook.getId());
 			updateBook.setModifyDate(formatDate.convertLocalDateTimeToDate(LocalDateTime.now()));
+			updateBook.getProduct().setQuanlity(book.getProduct().getQuanlity());
 			updateBook.getProduct().setActive(true);
 			productService.saveBook(updateBook);
 
@@ -108,7 +110,9 @@ public class DeloyProductController {
 			}
 		} else {
 			if (typeProduct.equals("electronic")) {
+				Electronic electronic = productService.findElectronicById(updateElectronic.getId());
 				updateElectronic.setModifyDate(formatDate.convertLocalDateTimeToDate(LocalDateTime.now()));
+				updateElectronic.getProduct().setQuanlity(electronic.getProduct().getQuanlity());
 				updateElectronic.getProduct().setActive(true);
 				productService.saveElectronic(updateElectronic);
 
@@ -126,7 +130,9 @@ public class DeloyProductController {
 					e.printStackTrace();
 				}
 			} else {
+				Clothes clothes = productService.findClothesById(updateClothes.getId());
 				updateClothes.setModifyDate(formatDate.convertLocalDateTimeToDate(LocalDateTime.now()));
+				updateClothes.getProduct().setQuanlity(clothes.getProduct().getQuanlity());
 				updateClothes.getProduct().setActive(true);
 				productService.saveClothes(updateClothes);
 				MultipartFile clothesImage = updateClothes.getProduct().getProductImage();
