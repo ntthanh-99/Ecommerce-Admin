@@ -119,7 +119,7 @@ public class DeloyProductController {
 				MultipartFile electronicImage = updateElectronic.getProduct().getProductImage();
 				try {
 					byte[] bytes = electronicImage.getBytes();
-					String name = updateElectronic.getId() + ".png";
+					String name = updateElectronic.getProduct().getId() + ".png";
 					File file = new File("src/main/resources/static/image/electronic/" + name);
 					file.delete();
 					BufferedOutputStream stream = new BufferedOutputStream(
@@ -138,7 +138,7 @@ public class DeloyProductController {
 				MultipartFile clothesImage = updateClothes.getProduct().getProductImage();
 				try {
 					byte[] bytes = clothesImage.getBytes();
-					String name = updateClothes.getId() + ".png";
+					String name = updateClothes.getProduct().getId() + ".png";
 					File file = new File("src/main/resources/static/image/clothes/" + name);
 					file.delete();
 					BufferedOutputStream stream = new BufferedOutputStream(
